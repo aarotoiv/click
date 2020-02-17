@@ -1,11 +1,12 @@
 <template>
     <div id="pointContainer">
         <p id="pointTitle">
-            Your points
+            Your points ({{points}})
         </p>
-        <p id="pointText">
-            {{points}}
-        </p>
+        <div id="pointsGraphic">
+            <div class="pointBubble" v-for="index in points" v-bind:key="index">
+            </div>
+        </div>
         <p v-for="message in messages" v-bind:key="message.key" class="pointMessage">
             {{message.message}}
         </p>
@@ -28,7 +29,10 @@ export default {
   methods: {
       receivedPoints(data) {
           const key = Math.random().toString(36).substring(7);
-          this.$set(this.messages, key, {message: `${data} till next prize.`, key});
+          this.$set(this.messages, key, {message: `${data} clicks till next prize.`, key});
+          setTimeout(() => {
+              this.$delete(this.messages, key);
+          }, 2000);
       }
   }
 }
@@ -38,15 +42,41 @@ export default {
 <style scoped>
     #pointContainer {
         width: 100%;
+        overflow:hidden;
+        margin-top: 20px;
     }
     #pointTitle {
-        text-align:center;
-        padding-bottom: 20px;
-        font-size: 30px;
-        color: rgba(255,255,255,0.8);
+        padding-left: 5px;
+        padding-bottom: 5px;
+        font-size: 25px;
+        color: #fff;
+        width: 500px;
+        margin: 0 auto;
     }
-    #pointText {
+    .pointMessage {
+        position:absolute;
+        width: 100%;
         text-align:center;
-        font-size: 30px;
+        animation: messageAnim 2s ease-out;
+    }
+    @keyframes messageAnim {
+        from {opacity: 1; font-size: 10px; bottom: -5%;}
+        to {opacity: 0; font-size: 50px; bottom: 50%;}
+    }
+    #pointsGraphic {
+        width: 90%;
+        max-width: 500px;
+        max-height: 30%;
+        display:flex;
+        flex-direction:row;
+        position:relative;
+        margin: 0 auto;
+        flex-wrap:wrap;
+    }
+    .pointBubble {
+        padding:5px;
+        background: #fff;
+        border-radius: 10px;
+        margin: 5px;
     }
 </style>
