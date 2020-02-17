@@ -18,21 +18,20 @@ let sessionConf = session({
     resave: true,
     saveUninitialized: true
 });
-
-app.use(sessionConf);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-
-if (process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV !== 'production') {
     const corsOptions = {
         origin: 'http://localhost:8080',
         credentials: true
     }
     app.use(cors(corsOptions));
     app.use(morgan('dev'));
+}
+app.use(sessionConf);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/dist'));
     const path = require('path');
     app.get('*', (req, res) => {
