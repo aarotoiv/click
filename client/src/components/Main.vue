@@ -3,7 +3,7 @@
     <div v-if="connecting" id="loading">
       <p>loading</p>
     </div>
-    <div v-if="waitingForRetry" id="retry">
+    <div v-else-if="waitingForRetry" id="retry">
       <p id="retryTitle">
         You're out of points. Click the button to retry.
       </p>
