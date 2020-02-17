@@ -76,9 +76,15 @@ export default {
         flex-wrap:wrap;
     }
     .pointBubble {
-        padding:5px;
+        width: 10px;
+        height: 10px;
         background: #fff;
         border-radius: 10px;
         margin: 5px;
+        animation: pointBubbleEntry 0.2s ease-in-out;
+    }
+    @keyframes pointBubbleEntry {
+        from {transform:scale(0);}
+        to {transform:scale(1)}
     }
 </style>

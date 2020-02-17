@@ -60,11 +60,9 @@ export default {
       this.$set(this, 'waitingForRetry', true)
     },
     retry() {
-      console.log("ATTEMPTING RETRY");
       SocketHandler.retry(this.socket);
     },
     doRetry(points) {
-      console.log("HERE");
       this.$set(this, 'points', points);
       this.$set(this, 'waitingForRetry', false);
     }
