@@ -5,8 +5,8 @@
     </div>
     <div v-else id="container">
       <ClickButton @clicked="click"/>
+      <Points v-bind:points="points" />
     </div>
-    <Points v-bind:points="points" />
   </div>
 </template>
 

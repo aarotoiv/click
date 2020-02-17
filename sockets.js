@@ -33,6 +33,9 @@ module.exports = {
                 else if(n % 10 == 0) 
                     points += 5;
 
+                socket.request.session.points += points;
+                socket.request.session.save();
+
                 const hitsTillPrize = n % 10 != 0 ? 10 - n % 10 : 0;
                 socket.emit('youClicked', {points, hitsTillPrize});
             });
