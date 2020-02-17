@@ -1,16 +1,17 @@
 <template>
     <div id="pointContainer">
         <p id="pointText">
+            {{points}}
         </p>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'ClickButton',
-  methods: {
-      buttonClick() {
-          this.$emit('clicked');
+  name: 'Points',
+  props: {
+      points: {
+          type: Number
       }
   }
 }

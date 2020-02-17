@@ -6,17 +6,20 @@
     <div v-else id="container">
       <ClickButton @clicked="click"/>
     </div>
+    <Points v-bind:points="points" />
   </div>
 </template>
 
 <script>
 import SocketHandler from '../util/SocketHandler';
 import ClickButton from './ClickButton';
+import Points from './Points';
 
 export default {
   name: 'Main',
   components: {
-    ClickButton
+    ClickButton,
+    Points
   },
   data() {
     return {
