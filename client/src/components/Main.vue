@@ -4,15 +4,20 @@
       <p>loading</p>
     </div>
     <div v-else id="container">
-      <p>asdfasdfs</p>
+      <ClickButton @clicked="click"/>
     </div>
   </div>
 </template>
 
 <script>
 import SocketHandler from '../util/SocketHandler';
+import ClickButton from './ClickButton';
+
 export default {
   name: 'Main',
+  components: {
+    ClickButton
+  },
   data() {
     return {
       socket: null,
@@ -32,7 +37,9 @@ export default {
     joined(points) {
       this.$set(this, 'points', points);
       this.$set(this, 'connecting', false);
-      console.log(points);
+    },
+    click() {
+      SocketHandler.click(this.socket);
     }
   }
 }

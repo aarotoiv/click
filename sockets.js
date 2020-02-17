@@ -22,7 +22,6 @@ module.exports = {
                 points = socket.request.session.points;
             
             socket.emit('joinedServer', {points});
-            
         });
 
     }

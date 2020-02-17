@@ -1,5 +1,4 @@
 import io from 'socket.io-client';
-import axios from 'axios';
 
 const URI = 'http://localhost:5000';
 
@@ -10,5 +9,9 @@ export default {
             joined(data.points);
         });
         return socket;
+    },
+    click(socket) {
+        socket.emit('clicked', {});
+        console.log("EMITTING");
     }
 }
