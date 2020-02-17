@@ -19,14 +19,16 @@ let sessionConf = session({
     saveUninitialized: true
 });
 
-const corsOptions = {
-    origin: 'http://localhost:8080',
-    credentials: true
-}
-app.use(sessionConf);
-app.use(cors(corsOptions));
-if(process.env.NODE !== 'production') 
+if(process.env.NODE !== 'production') {
+    const corsOptions = {
+        origin: 'http://localhost:8080',
+        credentials: true
+    }
+    app.use(cors(corsOptions));
     app.use(morgan('dev'));
+    app.use(sessionConf);
+}
+    
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
