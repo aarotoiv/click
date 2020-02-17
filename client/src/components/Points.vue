@@ -50,7 +50,8 @@ export default {
         padding-bottom: 5px;
         font-size: 25px;
         color: #fff;
-        width: 500px;
+        width: 90%;
+        max-width: 500px;
         margin: 0 auto;
     }
     .pointMessage {
@@ -58,6 +59,7 @@ export default {
         width: 100%;
         text-align:center;
         animation: messageAnim 2s ease-out;
+        white-space: nowrap;
     }
     @keyframes messageAnim {
         from {opacity: 1; font-size: 10px; bottom: -5%;}
