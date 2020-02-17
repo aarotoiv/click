@@ -13,11 +13,16 @@ module.exports = {
         });
         
         io.on('connection', function(socket) {
-
-
-            socket.on('disconnect', function(data) {
-                
-            });
+            let points = 0;
+            if(!socket.request.session.points) {
+                socket.request.session.points = 20;
+                socket.request.session.save();
+                points = socket.request.session.points;
+            } else 
+                points = socket.request.session.points;
+            
+            socket.emit('joinedServer', {points});
+            
         });
 
     }
