@@ -36,7 +36,7 @@ module.exports = {
                 socket.request.session.points += points;
                 socket.request.session.save();
 
-                const hitsTillPrize = n % 10 != 0 ? 10 - n % 10 : 0;
+                const hitsTillPrize = n % 10 != 0 ? 10 - n % 10 : 10;
                 socket.emit('youClicked', {points, hitsTillPrize});
             });
         });

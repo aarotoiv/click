@@ -5,7 +5,7 @@
     </div>
     <div v-else id="container">
       <ClickButton @clicked="click"/>
-      <Points v-bind:points="points" />
+      <Points ref="pointsComponent" v-bind:points="points" />
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
     },
     receivedPoints(data) {
       this.$set(this, 'points', this.points + data.points);
-      console.log(data);
+      this.$refs.pointsComponent.receivedPoints(data.hitsTillPrize);
     }
   }
 }
@@ -54,9 +54,5 @@ export default {
 
 
 <style scoped>
-  p {
-    margin: 0;
-    padding:0;
-  }
 
 </style>

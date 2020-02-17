@@ -22,4 +22,8 @@ html,body, #app {
   background: #000;
   color: #fff;
 }
+p {
+  margin: 0;
+  padding:0;
+}
 </style>
