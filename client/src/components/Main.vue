@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     this.$set(this, 'connecting', true);
-    SocketHandler.initialize(this.joined)
+    SocketHandler.initialize(this.joined, this.receivedPoints)
     .then(socket => {
       this.$set(this, 'socket', socket);
     });
@@ -40,6 +40,10 @@ export default {
     },
     click() {
       SocketHandler.click(this.socket);
+    },
+    receivedPoints(data) {
+      this.$set(this, 'points', this.points + data.points);
+      console.log(data);
     }
   }
 }

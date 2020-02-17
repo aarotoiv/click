@@ -22,6 +22,20 @@ module.exports = {
                 points = socket.request.session.points;
             
             socket.emit('joinedServer', {points});
+
+            socket.on('click', function(data) {
+                n++;
+                let points = -1;
+                if(n % 500 == 0) 
+                    points += 250;
+                else if(n % 100 == 0)       
+                    points += 40;
+                else if(n % 10 == 0) 
+                    points += 5;
+
+                const hitsTillPrize = n % 10 != 0 ? 10 - n % 10 : 0;
+                socket.emit('youClicked', {points, hitsTillPrize});
+            });
         });
 
     }

@@ -1,7 +1,8 @@
 <template>
-    <button type="button" id ="clickme" @click="buttonClick">
-        Click me!
-    </button>
+    <div id="pointContainer">
+        <p id="pointText">
+        </p>
+    </div>
 </template>
 
 <script>
