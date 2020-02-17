@@ -37,7 +37,18 @@ module.exports = {
                 socket.request.session.save();
 
                 const hitsTillPrize = n % 10 != 0 ? 10 - n % 10 : 10;
-                socket.emit('youClicked', {points, hitsTillPrize});
+                if(socket.request.session.points > 0) 
+                    socket.emit('youClicked', {points, hitsTillPrize});
+                else 
+                    socket.emit('outOfPoints', {});
+            });
+            
+            socket.on('retry', function(data) {
+                socket.request.session.points = 20;
+                socket.request.session.save();
+                points = socket.request.session.points;
+
+                socket.emit('doRetry', {points});
             });
         });
 

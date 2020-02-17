@@ -7,8 +7,8 @@
       <p id="retryTitle">
         You're out of points. Click the button to retry.
       </p>
-      <button type="button" id="retryButton" v-bind:click="retry">
-        
+      <button type="button" id="retryButton" v-on:click="retry">
+        RETRY
       </button>
     </div>
     <div v-else id="container">
@@ -60,9 +60,11 @@ export default {
       this.$set(this, 'waitingForRetry', true)
     },
     retry() {
+      console.log("ATTEMPTING RETRY");
       SocketHandler.retry(this.socket);
     },
     doRetry(points) {
+      console.log("HERE");
       this.$set(this, 'points', points);
       this.$set(this, 'waitingForRetry', false);
     }
@@ -72,5 +74,30 @@ export default {
 
 
 <style scoped>
-
+  #loading {
+    text-align:center;
+    font-size: 50px;
+    line-height: 100%;
+  }
+  #retryTitle {
+    text-align:center;
+    font-size: 50px;
+    margin-top: 20px;
+  }
+  #retryButton {
+      width: 80%;
+      max-width: 500px;
+      height: 150px;
+      background: #fff;
+      font-size: 40px;
+      border:none;
+      margin:50px auto;
+      display:block;
+      position:relative;
+      cursor:pointer;
+  }
+  #retryButton:active {
+      border:none;
+      outline:none;
+  }
 </style>
