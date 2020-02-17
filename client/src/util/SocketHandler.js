@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const URI = 'http://localhost:5000';
+const URI = '';//'http://localhost:5000';
 
 export default {
     async initialize(joined, receivedPoints, outOfPoints, doRetry) {
