@@ -1,4 +1,5 @@
 # Click
+[There is also a React Native implementation of this game.](https://github.com/aarotoiv/click-rn)
 ## What
 Simple multiplayer clicking game. \
 Start with 20 points. \
