@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div v-if="connecting" id="loading">
-      <p>loading</p>
+      <p>Loading...</p>
     </div>
     <div v-else-if="waitingForRetry" id="retry">
       <p id="retryTitle">
@@ -37,6 +37,7 @@ export default {
       points: 0
     }
   },
+  //onmount initialize sockets and connect to the server. save socket to state
   mounted() {
     this.$set(this, 'connecting', true);
     SocketHandler.initialize(this.joined, this.receivedPoints, this.outOfPoints, this.doRetry)
@@ -44,24 +45,32 @@ export default {
       this.$set(this, 'socket', socket);
     });
   },
+  //methods
   methods: {
+    //you joined, set points and connecting to false
     joined(points) {
       this.$set(this, 'points', points);
       this.$set(this, 'connecting', false);
     },
+    //click happened, goes to emitter
     click() {
       SocketHandler.click(this.socket);
     },
+    //your click was registered and received a response from the websocket
     receivedPoints(data) {
       this.$set(this, 'points', this.points + data.points);
+      //call child components function to inform it about a new hitstillprize message
       this.$refs.pointsComponent.receivedPoints(data.hitsTillPrize);
     },
+    //out of points
     outOfPoints() {
       this.$set(this, 'waitingForRetry', true)
     },
+    //retry happened, goes to emitter
     retry() {
       SocketHandler.retry(this.socket);
     },
+    //retry confirmed by websocket, set points
     doRetry(points) {
       this.$set(this, 'points', points);
       this.$set(this, 'waitingForRetry', false);
@@ -75,12 +84,12 @@ export default {
   #loading {
     text-align:center;
     font-size: 50px;
-    line-height: 100%;
+    line-height: 100vh;
   }
   #retryTitle {
     text-align:center;
     font-size: 50px;
-    margin-top: 20px;
+    margin-top: 10%;
   }
   #retryButton {
       width: 80%;

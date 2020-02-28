@@ -27,6 +27,7 @@ export default {
       }
   },
   methods: {
+      //received new hitstillprize message, create it and set timeout to delete the whole deal
       receivedPoints(data) {
           const key = Math.random().toString(36).substring(7);
           this.$set(this.messages, key, {message: `${data} clicks till next prize.`, key});

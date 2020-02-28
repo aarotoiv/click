@@ -5,6 +5,7 @@
 </template>
 
 <script>
+//click button. emit is catched in main.vue
 export default {
   name: 'ClickButton',
   methods: {
